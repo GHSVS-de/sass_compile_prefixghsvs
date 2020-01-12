@@ -1,6 +1,7 @@
 /node_modules/
 /leder-hofmann.de/
 /leder-hofmann.com/
+ghs/
 .DS_Store
 _notes/
 ftp-credentials.json
