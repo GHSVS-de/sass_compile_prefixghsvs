@@ -1,0 +1,10 @@
+/node_modules/
+/leder-hofmann.de/
+/leder-hofmann.com/
+.DS_Store
+_notes/
+ftp-credentials.json
+test.sh
+test.php
+test2.php
+test.*
