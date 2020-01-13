@@ -1,7 +1,7 @@
 {
   "name": "sass_compile_prefixghsvs",
   "description": "Kompilieren und autoprefixen von scss in Template. Multiprojekt-Version.",
-  "version": "2020.01.12",
+  "version": "2020.01.13",
   "Console start": "cd /mnt/z/git-kram/sass_compile_prefixghsvs",
   "versionTxt": "2020-01-13T19:39:11+0100",
   "DIR": {
