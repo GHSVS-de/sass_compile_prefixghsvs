@@ -2,6 +2,8 @@
 
 `cd /mnt/z/git-kram/sass_compile_prefixghsvs`
 
+Once: `npm install`
+
 `node prepareProject.js <PROJECTFFOLDER (relative)>`
 
 `npm run g-all-upload`
@@ -22,9 +24,9 @@
 - Be not so stupid to use it in a productive environment without tests.
 
 #### How to configure
-- Create a project folder like `myProject/` inside main dir of repository.
-- Create and configure a file `package.json` inside project folder. See file `package-example_project.json`.
-- Optional: Create and configure a file `ftp-credentials.json` inside project folder. See file `ftp-credentials-example.json`.- Run `node prepareProject.js myProject` and confirm to override the **main** `package.json`. Afterwards it's changed and configured for the project `myProject`. These keys are adapted:
+- Create a project folder like `yourOwnProject/` inside main dir of repository.
+- Create and configure a file `yourOwnProject/package.json`. See example file `myProject/package.json`.
+- Optional: Create and configure a file `yourOwnProject/ftp-credentials.json` inside project folder. See example file `myProject/ftp-credentials.json`.- Run `node prepareProject.js yourOwnProject` and confirm to override the **main** `package.json`. Afterwards it's changed and configured for the project `yourOwnProject`. These keys are adapted:
 ```
 	"versionTxt" (just a datetime stamp)
 	"DIR" > "scss"
