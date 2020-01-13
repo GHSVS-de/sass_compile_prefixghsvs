@@ -27,13 +27,15 @@ Once: `npm install`
 - Create a project folder like `yourOwnProject/` inside main dir of repository.
 - Create and configure a file `yourOwnProject/package.json`. See example file `myProject/package.json`.
 - Optional: Create and configure a file `yourOwnProject/ftp-credentials.json` inside project folder. See example file `myProject/ftp-credentials.json`.- Run `node prepareProject.js yourOwnProject` and confirm to override the **main** `package.json`. Afterwards it's changed and configured for the project `yourOwnProject`. These keys are adapted:
+
 ```
-	"versionTxt" (just a datetime stamp)
-	"DIR" > "scss"
-	"DIR" > "target"
-	"DIR" > "project"
-	"DIR" > "projectName"
-	```
+"versionTxt" (just a datetime stamp)
+"DIR" > "scss"
+"DIR" > "target"
+"DIR" > "project"
+"DIR" > "projectName"
+```
+
 
 #### How to start a script
 - `npm run [SCRIPTKEY]`

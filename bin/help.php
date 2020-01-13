@@ -34,13 +34,15 @@ $scriptsHelp = array(
 	. '- Create and configure a file `yourOwnProject/package.json`. See example file `myProject/package.json`.' . NL
 	. '- Optional: Create and configure a file `yourOwnProject/ftp-credentials.json` inside project folder. See example file `myProject/ftp-credentials.json`.'
 	. '- Run `node prepareProject.js yourOwnProject` and confirm to override the **main** `package.json`. Afterwards it\'s changed and configured for the project `yourOwnProject`. These keys are adapted:' . NL
-	. '```
-	"versionTxt" (just a datetime stamp)
-	"DIR" > "scss"
-	"DIR" > "target"
-	"DIR" > "project"
-	"DIR" > "projectName"
-	```', 
+	. '
+```
+"versionTxt" (just a datetime stamp)
+"DIR" > "scss"
+"DIR" > "target"
+"DIR" > "project"
+"DIR" > "projectName"
+```
+', 
 	'How to start a script' =>  '`npm run [SCRIPTKEY]`',
 	'The `DIR` block (inside **main** `package.json`):' =>
 	'Normally you don\'t have to change it yourself if you use `prepareProject.js [PROCECTFOLDER]` before first `npm` usage.' . NL
