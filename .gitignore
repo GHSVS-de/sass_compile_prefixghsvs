@@ -1,6 +1,7 @@
 /node_modules/
 /leder-hofmann.de/
 /leder-hofmann.com/
+/p_**
 ghs/
 .DS_Store
 _notes/
@@ -9,3 +10,5 @@ test.sh
 test.php
 test2.php
 test.*
+
+!/myProject/**

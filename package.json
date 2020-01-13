@@ -50,7 +50,7 @@
     "g-upload": "bin/FTPRecursiveFolderUpload.php"
   },
   "scriptsHelp": {
-    "ghs-help": "Displays an overview of (nearly all) possible `npm run [SCRIPTKEY]` commands.",
+    "g-help": "Displays an overview of (nearly all) possible `npm run [SCRIPTKEY]` commands.",
     "ghs-help-real-paths": "Like `ghs-help` but replaces path variables with values like configured in `DIR` block in `package.json`.",
     "ghs-npm-update-check": "Check for updates for packages in `package.json`. Prints a list, not more.",
     "ghs-ncu-override-json": "Check for updates for packages in `package.json`. AND override `package.json` file (newest stable versions). Don't forget to run npm install!",
