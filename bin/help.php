@@ -32,7 +32,7 @@ $scriptsHelp = array(
 
 	'How to configure' => 'Create a project folder like `yourOwnProject/` inside main dir of repository.' . NL
 	. '- Create and configure a file `yourOwnProject/package.json`. See example file `myProject/package.json`.' . NL
-	. '- Optional: Create and configure a file `yourOwnProject/ftp-credentials.json` inside project folder. See example file `myProject/ftp-credentials.json`.'
+	. '- Optional: Create and configure a file `yourOwnProject/ftp-credentials.json`. See example file `myProject/ftp-credentials.json`.' . NL
 	. '- Run `node prepareProject.js yourOwnProject` and confirm to override the **main** `package.json`. Afterwards it\'s changed and configured for the project `yourOwnProject`. These keys are adapted:' . NL
 	. '
 ```
@@ -41,40 +41,38 @@ $scriptsHelp = array(
 "DIR" > "target"
 "DIR" > "project"
 "DIR" > "projectName"
-```
-', 
-	'How to start a script' =>  '`npm run [SCRIPTKEY]`',
+```', 
 	'The `DIR` block (inside **main** `package.json`):' =>
-	'Normally you don\'t have to change it yourself if you use `prepareProject.js [PROCECTFOLDER]` before first `npm` usage.' . NL
-	. '- scss: Variable `$npm_package_DIR_scss` (absolute path). The source *.scss-directory.' . NL
-	. '- target: Variable `$npm_package_DIR_target` (absolute path). Dir (normally your template folder) where the whole **content** of folder `$npm_package_DIR_dist` will be transfered to.' . NL
-	. '- project: Variable `$npm_package_DIR_project` (absolute path). Local dir of the project.' . NL
-	. '- work: Variable `$npm_package_DIR_work` (relative path). Temporary local work directory inside active/relevant project folder `$npm_package_DIR_project`.' . NL
-	. '- css: Variable `$npm_package_DIR_css` (relative path). In the beginning a work dir inside folder `$npm_package_DIR_work`. At the end a folder inside `$npm_package_DIR_dist` where all compiled, prefixed, minified CSS/MAP files are located.' . NL
-	. '- raw: Variable `$npm_package_DIR_raw` (relative path). In the beginning a work dir inside folder `$npm_package_DIR_work`. At the end a folder inside `$npm_package_DIR_dist` where all compiled, minified **BUT NOT PREFIXED** CSS files are located.' . NL
-	. '- dist:  Variable `$npm_package_DIR_dist` (relative path). Final source folder for transfer to `$npm_package_DIR_target` and for the FTP transfer. The whole **content** of this folder will be transfered. Not the folder itself.');
+	'Normally you don\'t have to change it yourself if you use `node prepareProject.js [PROCECTFOLDER]` before first `npm` usage.' . NL
+	. '- `scss`: Variable `$npm_package_DIR_scss` (absolute path). The source *.scss-directory.' . NL
+	. '- `target`: Variable `$npm_package_DIR_target` (absolute path). Dir (normally your template folder) where the whole **content** of folder `$npm_package_DIR_dist` will be transfered to.' . NL
+	. '- `project`: Variable `$npm_package_DIR_project` (absolute path). Local dir of the project.' . NL
+	. '- `work`: Variable `$npm_package_DIR_work` (relative path). Temporary local work directory inside active/relevant project folder `$npm_package_DIR_project`.' . NL
+	. '- `css`: Variable `$npm_package_DIR_css` (relative path). In the beginning a work dir inside folder `$npm_package_DIR_work`. At the end a folder inside `$npm_package_DIR_dist` where all compiled, prefixed, minified CSS/MAP files are located.' . NL
+	. '- `raw`: Variable `$npm_package_DIR_raw` (relative path). In the beginning a work dir inside folder `$npm_package_DIR_work`. At the end a folder inside `$npm_package_DIR_dist` where all compiled, minified **BUT NOT PREFIXED** CSS files are located.' . NL
+	. '- `dist`:  Variable `$npm_package_DIR_dist` (relative path). Final source folder for transfer to `$npm_package_DIR_target` and for the FTP transfer. The whole **content** of this folder will be transfered. Not the folder itself.',);
 
 $ftpHelp = array(
 	'FTP configuration (inside `$npm_package_DIR_project/ftp-credentials.json`)' =>
 	'**No guarantees concerning security!**' . NL
-	. '- See also file `ftp-credentials-example.json`.' . NL
-	. '- place a comment here: Place one if you want to. No usage.' . NL
-	. '- connectionName: "Whatever" string. An information displayed in console when the FTP script starts.' . NL
-	. '- server: The FTP Server/Host.' . NL
-	. '- user: The FTP username.' . NL
-	. '- password: The password of user.' . NL
-	. '- remoteDir: The ftp directory. Starts and ends with a slash (`/`)! If it\'s the FTP ROOT of the current FTP connection just a single slash.' . NL
-	. '- ssl: **I have never tested with value `false`!**.' . NL
-	. '- passive: At least `true` on Windows is recommended because of firewall blockades.'
+	. '- See example file `myProject/ftp-credentials.json`.' . NL
+	. '- `place a comment here`: Place one if you want to. No usage.' . NL
+	. '- `connectionName`: "Whatever" string. An information displayed in console when the FTP script starts.' . NL
+	. '- `server`: The FTP Server/Host.' . NL
+	. '- `user`: The FTP username.' . NL
+	. '- `password`: The password of user.' . NL
+	. '- `remoteDir`: The ftp directory. Starts and ends with a slash (`/`)! If it\'s the ROOT of the current FTP connection just a single slash.' . NL
+	. '- `ssl`: **I have never tested with value `false`!**.' . NL
+	. '- `passive`: At least `true` on Windows WSL is recommended because of firewall blockades.'
 );
 
-$packageJson['scriptsHelp'] = array_merge($scriptsHelp, $packageJson['scriptsHelp'], $ftpHelp);
+$packageJson['scriptsHelp'] = array_merge($scriptsHelp, $ftpHelp, $packageJson['scriptsHelp']);
 
 foreach ($packageJson['scriptsHelp'] as $scriptName => $scriptHelp)
 {
 	$pre = '';
 
-	if (strpos($scriptName, 'ghs-') === 0)
+	if (strpos($scriptName, 'g-') === 0)
 	{
 		$pre = 'npm run ';
 		

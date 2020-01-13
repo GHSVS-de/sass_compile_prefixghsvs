@@ -23,7 +23,7 @@ $ftp_user_name = $ftpJson['ftp']['user'];
 $ftp_password = $ftpJson['ftp']['password'];
 // As /home/user/ftp/ WITH the last slash! 
 $remoteDir = $ftpJson['ftp']['remoteDir'];
-// Local folder. Relative or absolut path.
+// Local folder. Absolute path.
 $dir = "$npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist";
 
 $dir = rtrim($dir, '/ \\');

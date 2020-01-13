@@ -1,4 +1,4 @@
 {
-	"scss": "/absolute/path/to/scss/files/on/my/local/machine",
-	"target": "/absolute/path/to/templates/on/my/local/machine/whateverTemplate"
+	"scss": "/path/to/my/scss",
+	"target": "/path/to/my/template"
 }

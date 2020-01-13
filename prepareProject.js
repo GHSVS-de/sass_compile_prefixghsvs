@@ -15,14 +15,29 @@ const Fs = require('fs');
 const dateFormat = require('dateformat');
 const RootPath = process.cwd();
 
+let doCheck = true;
+
 console.log(`Start prepareProject.js in ${RootPath}.`);
 
-const projectName = process.argv[2];
+let projectName = process.argv[2];
 
 if (!projectName)
 {
 	console.log(`Error: Not a project: ${projectName}`);
 	process.exit(1);
+}
+
+projectName = projectName.replace(/\/+$/, "");
+
+// Exclude some checks for example project "myProject".
+if (projectName === 'myProject')
+{
+	console.log(`\n\n#### WARNING WARNING WARNING ####`);
+	console.log(`You asked to configure the example project "${projectName}".`);
+	console.log(`That will suppress several important checks inside this script and change some variables.`);
+	console.log(`DO NOT count on all the following OKs.`);
+	console.log(`#### WARNING END ####\n\n`);
+	doCheck = false;
 }
 
 console.log(`OK, projectName: ${projectName}`);
@@ -47,10 +62,8 @@ const thatFile = `${RootPath}/${file}`;
 		console.log(`Error: Not a file: ${file}`);
 		process.exit(1);
 	}
-	else
-	{
-		console.log(`OK: File exists: ${file}`);
-	}
+
+	console.log(`OK: File exists: ${file}`);
 });
 
 const thisJson = JSON.parse(Fs.readFileSync(thisFile).toString());
@@ -58,22 +71,30 @@ console.log('Found parameters for current project:');
 console.log(thisJson);
 
 [thisJson.scss, thisJson.target].forEach((folder) => {
-	if (!folder || !(Fs.existsSync(folder) && Fs.lstatSync(folder).isDirectory()))
+	if (doCheck === true)
 	{
-		console.log(`Error: Not a folder or missing: ${folder}`);
-		process.exit(1);
+		if (!folder || !(Fs.existsSync(folder) && Fs.lstatSync(folder).isDirectory()))
+		{
+			console.log(`Error: Not a folder or missing: ${folder}`);
+			process.exit(1);
+		}
 	}
-	else
-	{
-		console.log(`OK: Folder exists: ${folder}`);
-	}
+	console.log(`OK: Folder exists: ${folder}`);
 });
 
 const thatJson = JSON.parse(Fs.readFileSync(thatFile).toString());
 console.log(`OK, read main ${file}`);
 thatJson.DIR.scss = thisJson.scss;
 thatJson.DIR.target = thisJson.target;
-thatJson.DIR.project = projectPath;
+
+if (doCheck === true)
+{
+	thatJson.DIR.project = projectPath;
+}
+else
+{
+	thatJson.DIR.project = `/thisRepository/${projectName}`;
+}
 thatJson.DIR.projectName = projectName;
 thatJson.versionTxt = dateFormat(new Date(), "isoDateTime");
 
