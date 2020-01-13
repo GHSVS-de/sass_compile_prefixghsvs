@@ -22,7 +22,8 @@ $scriptsHelp = array(
 	'A half-assed, scrawly package for domestic use that compiles, minifies, autoprefixes *.scss files to CSS and creates source-maps.' . NL
 	. '- Can also upload the files via FTP.' . NL
 	. '- Multiple projects/websites can be configured in 1 repository. But only 1 at the same time can be processed!' . NL
-	. '- No luxury. You need to know what you\'re doing.',
+	. '- No luxury. You need to know what you\'re doing.' .NL
+	. '- See example for config (`*.json`) and output example (folder `ghs/`) in directory `myProject/`.',
 
 	'Tested?' => 'Only with WSL (Windows Subsystem for Linux / DEBIAN) + PHP 7.3 + Node + NPM on local machine.',
 
