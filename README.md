@@ -6,6 +6,14 @@ Once: `npm install`
 
 `node prepareProject.js <PROJECTFFOLDER (relative)>`
 
+`npm run g-all-local` (no transfer to target or via FTP)
+
+or
+
+`npm run g-all` (no transfer via FTP)
+
+or
+
 `npm run g-all-upload`
 
 ### Output of `npm run g-help` (path variables not translated)
@@ -26,7 +34,8 @@ Once: `npm install`
 #### How to configure
 - Create a project folder like `yourOwnProject/` inside main dir of repository.
 - Create and configure a file `yourOwnProject/package.json`. See example file `myProject/package.json`.
-- Optional: Create and configure a file `yourOwnProject/ftp-credentials.json`. See example file `myProject/ftp-credentials.json`.- Run `node prepareProject.js yourOwnProject` and confirm to override the **main** `package.json`. Afterwards it's changed and configured for the project `yourOwnProject`. These keys are adapted:
+- Optional: Create and configure a file `yourOwnProject/ftp-credentials.json`. See example file `myProject/ftp-credentials.json`.
+- Run `node prepareProject.js yourOwnProject` and confirm to override the **main** `package.json`. Afterwards it's changed and configured for the project `yourOwnProject`. These keys are adapted:
 
 ```
 "versionTxt" (just a datetime stamp)
@@ -48,12 +57,12 @@ Once: `npm install`
 
 #### FTP configuration (inside `$npm_package_DIR_project/ftp-credentials.json`)
 - **No guarantees concerning security!**
-- See also file `ftp-credentials-example.json`.
-- place a comment here: Place one if you want to. No usage.
-- connectionName: "Whatever" string. An information displayed in console when the FTP script starts.
-- server: The FTP Server/Host.
-- user: The FTP username.
-- password: The password of user.
-- remoteDir: The ftp directory. Starts and ends with a slash (`/`)! If it's the ROOT of the current FTP connection just a single slash.
-- ssl: **I have never tested with value `false`!**.
-- passive: At least `true` on Windows WSL is recommended because of firewall blockades.
+- See example file `myProject/ftp-credentials.json`.
+- `place a comment here`: Place one if you want to. No usage.
+- `connectionName`: "Whatever" string. An information displayed in console when the FTP script starts.
+- `server`: The FTP Server/Host.
+- `user`: The FTP username.
+- `password`: The password of user.
+- `remoteDir`: The ftp directory. Starts and ends with a slash (`/`)! If it's the ROOT of the current FTP connection just a single slash.
+- `ssl`: **I have never tested with value `false`!**.
+- `passive`: At least `true` on Windows WSL is recommended because of firewall blockades.
