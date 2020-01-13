@@ -22,6 +22,7 @@ or
 - Can also upload the files via FTP.
 - Multiple projects/websites can be configured in 1 repository. But only 1 at the same time can be processed!
 - No luxury. You need to know what you're doing.
+- See example for config (`*.json`) and output example (folder `ghs/`) in directory `myProject/`.
 
 #### Tested?
 - Only with WSL (Windows Subsystem for Linux / DEBIAN) + PHP 7.3 + Node + NPM on local machine.
