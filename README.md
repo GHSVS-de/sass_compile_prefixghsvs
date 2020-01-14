@@ -22,7 +22,7 @@ or
 - Can also upload the files via FTP.
 - Multiple projects/websites can be configured in 1 repository. But only 1 at the same time can be processed!
 - No luxury. You need to know what you're doing.
-- See example for config (`*.json`) and output example (folder `ghs/`) in directory `myProject/ `.
+- See example for config (`*.json`) and output example (folder `ghs/`) in directory `myProject/`.
 
 #### Tested?
 - Only with WSL (Windows Subsystem for Linux / DEBIAN) + PHP 7.3 + Node + NPM on local machine.
@@ -76,18 +76,22 @@ or
 
 #### npm run g-all-local
 - Runs a complete job but **only inside local dir** `$npm_package_DIR_project/$npm_package_DIR_work`. No transfer to `$npm_package_DIR_target`. No FTP upload. First deletes local work directory `$npm_package_DIR_work` of current project.
+(`npm-run-all g-rm g-mkdirs g-compile g-copyRaw g-prefix g-minify g-version g-copyDist`)
 
 #### npm run g-all
 - Runs a complete job inclusive transfer to `$npm_package_DIR_target`. **No FTP upload**. First deletes local work directory `$npm_package_DIR_work` of current project.
+(`npm-run-all g-all-local g-copyTarget`)
 
 #### npm run g-all-upload
 - Like `g-all` **plus FTP upload**. NEEDS A CORRECTLY CONFIGURED `$npm_package_DIR_project/ftp-credentials.json`! Check twice and test before using it. First deletes local work directory `$npm_package_DIR_work` of current project.
+(`npm-run-all g-all g-upload`)
 
 #### npm run g-rm
 - Deletes **local** work directory `$npm_package_DIR_work` of current project.
 
 #### npm run g-mkdirs
 - Runs all jobs that match `g-mk-*`. Creates basic work folder structure of current project in `$npm_package_DIR_project`.
+(`npm-run-all g-mk-*`)
 
 #### npm run g-compile
 - Compiles *.scss files from `$npm_package_DIR_scss` to `*.css` and `*.css.map` files in local work dir `$npm_package_DIR_work/$npm_package_DIR_css` of current project.
@@ -110,19 +114,19 @@ or
 - Copies results of finished jobs to local folder `$npm_package_DIR_work/$npm_package_DIR_dist` inside current procect folder. More precisely: copies folders `$npm_package_DIR_css` and `$npm_package_DIR_raw`.
 
 #### npm run g-copyTarget
-- Copies **content** of `$npm_package_DIR_work/$npm_package_DIR_dist` to target folder `$npm_package_DIR_target`. More precisely: copies folders `$npm_package_DIR_css` and `$npm_package_DIR_raw`.
+- Copies **content** of `$npm_package_DIR_work/$npm_package_DIR_dist` to target folder `$npm_package_DIR_target`. More precisely: copies folders `$npm_package_DIR_css` and `$npm_package_DIR_raw`. No harm if they already exist. Existing folders and files stay alive. Only relevant files will be replaced.
 
 #### npm run g-upload
-- Runs the upload via FTP of all files/dirs inside dir `$npm_package_DIR_work/$npm_package_DIR_dist` inside current project folder. NEEDS A CORRECTLY CONFIGURED `$npm_package_DIR_project/ftp-credentials.json`! Check twice and test before using it.
+- Runs the upload via FTP of all files/dirs inside dir `$npm_package_DIR_work/$npm_package_DIR_dist` inside current project folder. NEEDS A CORRECTLY CONFIGURED `$npm_package_DIR_project/ftp-credentials.json`! Check twice and test before using it. No harm if folders/files already exist. Existing folders and files stay alive. Only relevant files will be replaced.
 
 #### npm run g-watch-local
-- Starts a `nodemon` watcher for changes in scss directory `$npm_package_DIR_scss` that starts a complete, new compilation via `npm run g-all-local` when a scss file is changed.
+- Starts a `nodemon` watcher for changes in scss directory `$npm_package_DIR_scss` that starts a complete, new compilation via `npm run g-all-local` when a scss file is changed. !Also starts a complete, new compilation when the watcher is started!
 
 #### npm run g-watch
-- Starts a `nodemon` watcher for changes in scss directory `$npm_package_DIR_scss` that starts a complete, new compilation via `npm run g-all` when a scss file is changed. !Also starts a complete, new compilation if the watcher is started!
+- Starts a `nodemon` watcher for changes in scss directory `$npm_package_DIR_scss` that starts a complete, new compilation via `npm run g-all` when a scss file is changed. !Also starts a complete, new compilation when the watcher is started!
 
 #### npm run g-watch-upload
-- Like `ghs-watch` **plus FTP-Upload**. NEEDS A CORRECTLY CONFIGURED `$npm_package_DIR_project/ftp-credentials.json`! Check twice and test before using it.
+- Like `ghs-watch` **plus FTP-Upload**. NEEDS A CORRECTLY CONFIGURED `$npm_package_DIR_project/ftp-credentials.json`! Check twice and test before using it. !Also starts a complete, new compilation and FTP upload when the watcher is started!
 
 #### npm run g-npm-update-check
 - Check for updates of packages in `package.json`. Prints a list, not more.

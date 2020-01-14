@@ -71,7 +71,7 @@ $packageJson['scriptsHelp'] = array_merge($scriptsHelp, $ftpHelp, $packageJson['
 
 foreach ($packageJson['scriptsHelp'] as $scriptName => $scriptHelp)
 {
-	$pre = '';
+	$pre = $add = '';
 
 	if (strpos($scriptName, 'g-') === 0)
 	{
@@ -82,7 +82,13 @@ foreach ($packageJson['scriptsHelp'] as $scriptName => $scriptHelp)
 			$scriptHelp = str_replace($replaceMe, $replaceWith, $scriptHelp);
 		}
 		
-		$output[] = "#### $pre$scriptName" . NL . '- ' . $scriptHelp . NL;
+		if (
+			!empty($packageJson['scripts'][$scriptName])
+			&& strpos($packageJson['scripts'][$scriptName], 'npm-run-all') !== false
+		){
+			$add = '(`' . $packageJson['scripts'][$scriptName] . '`)' . NL;
+		}
+		$output[] = "#### $pre$scriptName" . NL . '- ' . $scriptHelp . NL . $add;
 	}
 	else
 	{
