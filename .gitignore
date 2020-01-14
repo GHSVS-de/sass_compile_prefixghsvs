@@ -11,5 +11,6 @@ test.php
 test2.php
 test.*
 help-real-paths.txt
+log.txt
 
 !/myProject/**
