@@ -17,3 +17,4 @@
 
 # Don't add work dirs ghs/ to language statisctics of project
 ghs/* linguist-vendored
+*.css linguist-vendored
