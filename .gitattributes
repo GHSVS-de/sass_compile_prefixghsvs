@@ -16,5 +16,5 @@
 *.map   binary
 
 # Don't add work dirs ghs/ to language statisctics of project
-*/ghs/* linguist-vendored
+# */ghs/* linguist-vendored
 
