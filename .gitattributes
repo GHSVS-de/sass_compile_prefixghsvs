@@ -18,3 +18,5 @@
 # Don't add work dirs ghs/ to language statisctics of project
 # */ghs/* linguist-vendored
 
+# Disable language statistics of project
+* linguist-vendored
