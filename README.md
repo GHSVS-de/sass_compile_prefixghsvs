@@ -1,6 +1,6 @@
 # sass_compile_prefixghsvs
 
-### You are yourself responsible to keep the dependencies in 'package.json' secure and up-to-date! I refresh this repository seldomly. See `npm run g-npm-update-check` and `npm run g-ncu-override-json` below.
+### You are yourself responsible to keep the dependencies in `package.json` secure and up-to-date! I refresh this repository seldomly. See `npm run g-npm-update-check` and `npm run g-ncu-override-json` below.
 
 `cd /mnt/z/git-kram/sass_compile_prefixghsvs`
 
