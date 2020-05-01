@@ -55,7 +55,7 @@
     "g-copyDist": "npm-run-all g-copyDist-*",
     "g-copyDist-css": "shx cp -rf $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist",
     "g-copyDist-raw": "shx cp -rf $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_raw $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist",
-    "g-copyTarget": "cross-env-shell shx cp -rf $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist/* $npm_package_DIR_target",
+    "g-copyTarget": "shx cp -rf $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist/* $npm_package_DIR_target",
     "g-upload": "bin/FTPRecursiveFolderUpload.php"
   },
   "scriptsHelp": {
