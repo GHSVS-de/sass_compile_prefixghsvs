@@ -75,16 +75,28 @@ or
 - Like `g-help` but replaces path variables with values like configured in `DIR` block in `package.json`. Perhaps good to check the current path configuration.
 
 #### npm run g-all-local
-- Runs a complete job but **only inside local dir** `$npm_package_DIR_project/$npm_package_DIR_work`. No transfer to `$npm_package_DIR_target`. No FTP upload. First deletes local work directory `$npm_package_DIR_work` of current project.
+- Runs a complete job but **only inside local work dir** `$npm_package_DIR_project/$npm_package_DIR_work`. No transfer to `$npm_package_DIR_target`. No FTP upload. First deletes local work directory `$npm_package_DIR_work` of current project.
 (`npm-run-all g-rm g-mkdirs g-compile g-copyRaw g-prefix g-minify g-version g-copyDist`)
 
 #### npm run g-all
-- Runs a complete job inclusive transfer to `$npm_package_DIR_target`. **No FTP upload**. First deletes local work directory `$npm_package_DIR_work` of current project.
+- Runs a complete job inclusive final transfer from `$npm_package_DIR_dist` to `$npm_package_DIR_target`. **No FTP upload**. First deletes local work directory `$npm_package_DIR_work` of current project.
 (`npm-run-all g-all-local g-copyTarget`)
 
 #### npm run g-all-upload
 - Like `g-all` **plus FTP upload**. NEEDS A CORRECTLY CONFIGURED `$npm_package_DIR_project/ftp-credentials.json`! Check twice and test before using it. First deletes local work directory `$npm_package_DIR_work` of current project.
 (`npm-run-all g-all g-upload`)
+
+#### npm run g-css-local
+- Like `g-all-local` but without unprefixed files in folder `$npm_package_DIR_raw`. Creates only vendor prefixed files in dir $npm_package_DIR_css.
+(`npm-run-all g-rm g-mk-css g-compile g-prefix g-minify-css g-version-css g-mk-dist g-copyDist-css`)
+
+#### npm run g-css
+- Like `g-all` but without unprefixed files in folder `$npm_package_DIR_raw`. Only vendor prefixed files in dir `$npm_package_DIR_css`.
+(`npm-run-all g-css-local g-copyTarget`)
+
+#### npm run g-css-upload
+- Like `g-all-upload` but without unprefixed files in folder $npm_package_DIR_raw. Only vendor prefixed files in dir `$npm_package_DIR_css`.
+(`npm-run-all g-css g-upload`)
 
 #### npm run g-rm
 - Deletes **local** work directory `$npm_package_DIR_work` of current project.
@@ -93,8 +105,17 @@ or
 - Runs all jobs that match `g-mk-*`. Creates basic work folder structure of current project in `$npm_package_DIR_project`.
 (`npm-run-all g-mk-*`)
 
+#### npm run g-mk-css
+- Creates folder `$npm_package_DIR_work/$npm_package_DIR_css` (vendor prefixed files).
+
+#### npm run g-mk-raw
+- Creates folder `$npm_package_DIR_work/$npm_package_DIR_raw` (unprefixed files).
+
+#### npm run g-mk-dist
+- Creates folder `$npm_package_DIR_work/$npm_package_DIR_dist`. The content of this folder is the source for transfers to `$npm_package_DIR_target` and/or for FTP upload.
+
 #### npm run g-compile
-- Compiles *.scss files from `$npm_package_DIR_scss` to `*.css` and `*.css.map` files in local work dir `$npm_package_DIR_work/$npm_package_DIR_css` of current project.
+- Compiles `*.scss` files from `$npm_package_DIR_scss` to `*.css` and `*.css.map` files in local work dir `$npm_package_DIR_work/$npm_package_DIR_css` of current project. Not vendor prefixed yet.
 
 #### npm run g-copyRaw
 - Copies unprefixed `*.css` and `*.css.map` to local dir `$npm_package_DIR_work/$npm_package_DIR_raw` inside current project folder.
@@ -105,13 +126,34 @@ or
 - Target: Replaces `*.css` files in same dir.
 
 #### npm run g-minify
-- Minifies all `*.css` files and creates additional `*.min.css` files in **local** folders `$npm_package_DIR_work/$npm_package_DIR_raw` and `$npm_package_DIR_work/$npm_package_DIR_raw` inside current project folder.
+- Runs all jobs that match `g-minify-*`. Minifies `*.css` files and creates additional `*.min.css` and `*.css.min.map` files.
+(`npm-run-all g-minify-*`)
+
+#### npm run g-minify-css
+- See `g-minify`. Folder `$npm_package_DIR_work/$npm_package_DIR_css`.
+
+#### npm run g-minify-raw
+- See `g-minify`. Folder `$npm_package_DIR_work/$npm_package_DIR_raw`.
 
 #### npm run g-version
-- Adds datetime stamp files `version.txt`.
+- Runs all jobs that match `g-version-*`. Creates datetime stamp files `version.txt`. Source is `versionTxt` in `package.json`.
+(`npm-run-all g-version-*`)
+
+#### npm run g-version-css
+- See `g-version`. Folder `$npm_package_DIR_work/$npm_package_DIR_css/__Prefixed-CSS`.
+
+#### npm run g-version-raw
+- See `g-version`. Folder `$npm_package_DIR_work/$npm_package_DIR_raw/__NOT-Prefixed-CSS`.
 
 #### npm run g-copyDist
-- Copies results of finished jobs to local folder `$npm_package_DIR_work/$npm_package_DIR_dist` inside current procect folder. More precisely: copies folders `$npm_package_DIR_css` and `$npm_package_DIR_raw`.
+- Runs all jobs that match `g-copyDist-*`. Copies folders with results of finished jobs to local folder `$npm_package_DIR_work/$npm_package_DIR_dist`.
+(`npm-run-all g-copyDist-*`)
+
+#### npm run g-copyDist-css
+- See `g-copyDist`. Folder `$npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css` to `$npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist`.
+
+#### npm run g-copyDist-raw
+- See `g-copyDist`. Folder `$npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_raw` to `$npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist`.
 
 #### npm run g-copyTarget
 - Copies **content** of `$npm_package_DIR_work/$npm_package_DIR_dist` to target folder `$npm_package_DIR_target`. More precisely: copies folders `$npm_package_DIR_css` and `$npm_package_DIR_raw`. No harm if they already exist. Existing folders and files stay alive. Only relevant files will be replaced.
@@ -119,20 +161,14 @@ or
 #### npm run g-upload
 - Runs the upload via FTP of all files/dirs inside dir `$npm_package_DIR_work/$npm_package_DIR_dist` inside current project folder. NEEDS A CORRECTLY CONFIGURED `$npm_package_DIR_project/ftp-credentials.json`! Check twice and test before using it. No harm if folders/files already exist. Existing folders and files stay alive. Only relevant files will be replaced.
 
-#### npm run g-watch-local
-- Starts a `nodemon` watcher for changes in scss directory `$npm_package_DIR_scss` that starts a complete, new compilation via `npm run g-all-local` when a scss file is changed. !Also starts a complete, new compilation when the watcher is started!
-
-#### npm run g-watch
-- Starts a `nodemon` watcher for changes in scss directory `$npm_package_DIR_scss` that starts a complete, new compilation via `npm run g-all` when a scss file is changed. !Also starts a complete, new compilation when the watcher is started!
-
-#### npm run g-watch-upload
-- Like `ghs-watch` **plus FTP-Upload**. NEEDS A CORRECTLY CONFIGURED `$npm_package_DIR_project/ftp-credentials.json`! Check twice and test before using it. !Also starts a complete, new compilation and FTP upload when the watcher is started!
-
 #### npm run g-npm-update-check
 - Check for updates of packages in `package.json`. Prints a list, not more.
 
 #### npm run g-ncu-override-json
 - Check for updates for packages in `package.json`. AND override `package.json` file (newest stable versions). Don't forget to run `npm install` afterwards!
+
+#### npm run g-browsers
+- Output of complete browser list that are used for `Autoprefixer`. See file `.browserslistrc`.
 
 ##### package.json. `scripts` block.
  ```Array
@@ -141,23 +177,30 @@ or
     [g-help-real-paths] => bin/help.php -r
     [g-npm-update-check] => ncu
     [g-ncu-override-json] => ncu -u
-    [g-watch-local] => nodemon --watch $npm_package_DIR_scss/ --ext scss --exec "npm run g-all-local"
-    [g-watch] => nodemon --watch $npm_package_DIR_scss/ --ext scss --exec "npm run g-all"
-    [g-watch-upload] => nodemon --watch $npm_package_DIR_scss/ --ext scss --exec "npm run g-all-upload"
+    [g-browsers] => npx browserslist
     [g-all-local] => npm-run-all g-rm g-mkdirs g-compile g-copyRaw g-prefix g-minify g-version g-copyDist
     [g-all] => npm-run-all g-all-local g-copyTarget
     [g-all-upload] => npm-run-all g-all g-upload
-    [g-rm] => cross-env-shell "shx rm -rf $npm_package_DIR_project/$npm_package_DIR_work"
+    [g-css-local] => npm-run-all g-rm g-mk-css g-compile g-prefix g-minify-css g-version-css g-mk-dist g-copyDist-css
+    [g-css] => npm-run-all g-css-local g-copyTarget
+    [g-css-upload] => npm-run-all g-css g-upload
+    [g-rm] => shx rm -rf $npm_package_DIR_project/$npm_package_DIR_work
     [g-mkdirs] => npm-run-all g-mk-*
-    [g-mk-css] => cross-env-shell "shx mkdir -p $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css"
-    [g-mk-raw] => cross-env-shell "shx mkdir -p $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_raw"
-    [g-mk-dist] => cross-env-shell "shx mkdir -p $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist"
+    [g-mk-css] => shx mkdir -p $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css
+    [g-mk-raw] => shx mkdir -p $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_raw
+    [g-mk-dist] => shx mkdir -p $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist
     [g-compile] => node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 $npm_package_DIR_scss/ -o $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css
-    [g-copyRaw] => cross-env-shell shx cp $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css/*.{css,map} $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_raw
+    [g-copyRaw] => shx cp $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css/*.{css,map} $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_raw
     [g-prefix] => postcss --config build/postcss.config.js --replace "$npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css/*.css" "!$npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css/*.min.css"
-    [g-minify] => bin/minify.php
-    [g-version] => bin/writeVersion.php
-    [g-copyDist] => cross-env-shell shx cp -rf $npm_package_DIR_project/$npm_package_DIR_work/{$npm_package_DIR_css,$npm_package_DIR_raw} $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist
+    [g-minify] => npm-run-all g-minify-*
+    [g-minify-css] => bin/minify.php $npm_package_DIR_css
+    [g-minify-raw] => bin/minify.php $npm_package_DIR_raw
+    [g-version] => npm-run-all g-version-*
+    [g-version-css] => bin/writeVersion.php $npm_package_DIR_css/__Prefixed-CSS
+    [g-version-raw] => bin/writeVersion.php $npm_package_DIR_raw/__NOT-Prefixed-CSS
+    [g-copyDist] => npm-run-all g-copyDist-*
+    [g-copyDist-css] => shx cp -rf $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist
+    [g-copyDist-raw] => shx cp -rf $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_raw $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist
     [g-copyTarget] => cross-env-shell shx cp -rf $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist/* $npm_package_DIR_target
     [g-upload] => bin/FTPRecursiveFolderUpload.php
 )
