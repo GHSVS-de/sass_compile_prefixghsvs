@@ -1,5 +1,5 @@
 # V 2020.05.01
-- New file `.nvmrc`: Adapt it if you use `nvm` (Node Version Manager) to switch/install node versions and need another version. 
+- New file `.nvmrc`: Adapt it if you use `nvm` (Node Version Manager) to switch/install node versions and need another version.  Hint: `Node 14` needs some adaptions in `Debian WSL` via console.
 
 ## Updated some dependencies.
 - Added `shelljs` explicitely because current `shx` has lots of warnings with `node 14` otherwise.
