@@ -1,10 +1,11 @@
+prepros.config
+prepros-6.config
 /node_modules/
-/leder-hofmann.de/
-/leder-hofmann.com/
 /p_**
 ghs/
 .DS_Store
 _notes/
+__done/
 ftp-credentials.json
 test.sh
 test.php
