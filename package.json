@@ -1,10 +1,10 @@
 {
   "name": "sass_compile_prefixghsvs",
   "description": "Kompilieren und autoprefixen von scss in Template. Multiprojekt-Version.",
-  "version": "2020.05.01",
+  "version": "2020.07.20",
   "GitHubProjectUrl": "https://github.com/GHSVS-de/sass_compile_prefixghsvs",
   "Console start": "cd /mnt/z/git-kram/sass_compile_prefixghsvs",
-  "versionTxt": "2020-05-01T15:49:56+0200",
+  "versionTxt": "2020-07-19T18:41:05+0200",
   "DIR": {
     "scss": "/path/to/my/scss",
     "target": "/path/to/my/template",
@@ -91,17 +91,19 @@
     "g-browsers": "Output of complete browser list that are used for `Autoprefixer`. See file `.browserslistrc`."
   },
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "npm": "^6.14.6"
+  },
   "peerDependencies": {},
   "devDependencies": {
-    "autoprefixer": "^9.7.6",
+    "autoprefixer": "^9.8.5",
     "clean-css-cli": "^4.3.0",
     "dateformat": "^3.0.3",
     "fs": "0.0.1-security",
-    "fs-extra": "^9.0.0",
-    "node-sass": "^4.14.0",
-    "nodemon": "^2.0.3",
-    "npm-check-updates": "^4.1.2",
+    "fs-extra": "^9.0.1",
+    "node-sass": "^4.14.1",
+    "nodemon": "^2.0.4",
+    "npm-check-updates": "^7.0.2",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^7.1.1",
     "shelljs": "^0.8.4",
