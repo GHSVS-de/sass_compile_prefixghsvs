@@ -40,7 +40,7 @@ if (
 
 	foreach ($folders as $path => $dummy)
 	{
-		doMinify($path);
+		doPrefix($path);
 	}
 }
 else

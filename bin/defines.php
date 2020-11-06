@@ -73,3 +73,10 @@ function doMinify($path)
 		echo 'Minified: ' . $path_parts['basename'] . NL;
 	}
 }
+
+function doPrefix($path)
+{
+	$command = "postcss --config build/postcss.config.js --replace \"$path/*.css\" \"!$path/*.min.css\"";
+	exec($command);
+	echo 'Prefixed: ' . $path . NL;
+}

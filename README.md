@@ -1,5 +1,9 @@
 # sass_compile_prefixghsvs
 
+### A half-assed, scrawly package for domestic use that compiles, minifies, autoprefixes *.scss files to CSS and creates source-maps. Use it at your own risk and test it before you kill a production environment.
+
+##### Only tested with Win10/64, WSL 1 + Debian 10.
+
 ### You are yourself responsible to keep the dependencies in `package.json` secure and up-to-date! I refresh this repository seldomly. See `npm run g-npm-update-check` and `npm run g-ncu-override-json` below.
 
 `cd /mnt/z/git-kram/sass_compile_prefixghsvs`
