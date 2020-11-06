@@ -195,7 +195,8 @@ or
     [g-mk-css] => shx mkdir -p $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css
     [g-mk-raw] => shx mkdir -p $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_raw
     [g-mk-dist] => shx mkdir -p $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist
-    [g-compile] => node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 $npm_package_DIR_scss/ -o $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css
+    [replaced_g-compile] (Outdated! Don't use!) => node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 $npm_package_DIR_scss/ -o $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css
+    [g-compile] => sass --style expanded --source-map --embed-sources --no-error-css $npm_package_DIR_scss/:$npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css
     [g-copyRaw] => shx cp $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css/*.{css,map} $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_raw
     [g-prefix] => postcss --config build/postcss.config.js --replace "$npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css/*.css" "!$npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css/*.min.css"
     [g-minify] => npm-run-all g-minify-*
