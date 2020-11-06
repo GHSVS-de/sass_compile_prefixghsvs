@@ -1,10 +1,10 @@
 {
   "name": "sass_compile_prefixghsvs",
   "description": "Kompilieren und autoprefixen von scss in Template. Multiprojekt-Version.",
-  "version": "2020.09.17",
+  "version": "2020.11.06",
   "GitHubProjectUrl": "https://github.com/GHSVS-de/sass_compile_prefixghsvs",
   "Console start": "cd /mnt/z/git-kram/sass_compile_prefixghsvs",
-  "versionTxt": "2020-09-25T20:50:18+0200",
+  "versionTxt": "2020-11-06T22:32:50+0100",
   "DIR": {
     "scss": "/path/to/my/scss",
     "target": "/path/to/my/template",
@@ -43,7 +43,8 @@
     "g-mk-css": "shx mkdir -p $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css",
     "g-mk-raw": "shx mkdir -p $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_raw",
     "g-mk-dist": "shx mkdir -p $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist",
-    "g-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 $npm_package_DIR_scss/ -o $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css",
+    "replaced_g-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 $npm_package_DIR_scss/ -o $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css",
+    "g-compile": "sass --style expanded --source-map --embed-sources --no-error-css $npm_package_DIR_scss/:$npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css",
     "g-copyRaw": "shx cp -rf  $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css/* $npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_raw",
     "replaced-by-gprefix_g-prefixsssss": "postcss --config build/postcss.config.js --replace \"$npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css/*.css\" \"!$npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_css/*.min.css\"",
     "g-prefix": "bin/prefix.php $npm_package_DIR_css",
@@ -93,22 +94,25 @@
   },
   "license": "MIT",
   "dependencies": {
-    "npm": "^6.14.7"
+    "npm": "^6.14.8"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "postcss": "^8.1.6"
+  },
   "devDependencies": {
-    "autoprefixer": "^9.8.6",
+    "autoprefixer": "^10.0.1",
     "clean-css-cli": "^4.3.0",
     "dateformat": "^3.0.3",
     "fs": "0.0.1-security",
     "fs-extra": "^9.0.1",
-    "node-sass": "^4.14.1",
-    "nodemon": "^2.0.4",
-    "npm-check-updates": "^7.0.2",
+    "nodemon": "^2.0.6",
+    "npm-check-updates": "^9.2.4",
     "npm-run-all": "^4.1.5",
-    "postcss-cli": "^7.1.1",
+    "postcss": "^8.1.6",
+    "postcss-cli": "^8.2.0",
+    "sass": "^1.29.0",
     "shelljs": "^0.8.4",
-    "shx": "^0.3.2"
+    "shx": "^0.3.3"
   },
   "engines": {
     "node": ">=10"
