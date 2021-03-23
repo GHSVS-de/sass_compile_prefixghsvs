@@ -21,10 +21,10 @@ echo '#################################' . NL
 $ftp_server = $ftpJson['ftp']['server'];
 $ftp_user_name = $ftpJson['ftp']['user'];
 $ftp_password = $ftpJson['ftp']['password'];
-// As /home/user/ftp/ WITH the last slash! 
+// As /home/user/ftp/ WITH the last slash!
 $remoteDir = $ftpJson['ftp']['remoteDir'];
 // Local folder. Absolute path.
-$dir = "$npm_package_DIR_project/$npm_package_DIR_work/$npm_package_DIR_dist";
+$dir = "$npm_package_config_project/$npm_package_config_work/$npm_package_config_dist";
 
 $dir = rtrim($dir, '/ \\');
 
@@ -33,7 +33,7 @@ $ftp_passive = (boolean) $ftpJson['ftp']['passive'];
 
 //Create FTP directory if not exists
 function make_directory($ftp_stream, $dir)
-{ 
+{
 	// if directory already exists or can be immediately created return true
 	if (ftp_chdir($ftp_stream, $dir) || @ftp_mkdir($ftp_stream, $dir))
 	{
@@ -52,7 +52,7 @@ if ($ftp_ssl === true)
 {
 	//echo ' 4654sd48sa7d98sD81s8d71dsa <pre>' . print_r(getenv('port'), true) . '</pre>';exit;
 	$conn_id = ftp_ssl_connect($ftp_server);
-	echo 'Is a ftp_ssl connection: TRUE.' . NL; 
+	echo 'Is a ftp_ssl connection: TRUE.' . NL;
 }
 else
 {
@@ -95,7 +95,7 @@ foreach ($recursiveFileResearch as $file)
 	}
 
 	// Filename without backslashes (Windows..) and without the root directory
-	$files[] = str_replace($dir . '/', '', str_replace('\\', '/', $file->getPathname())); 
+	$files[] = str_replace($dir . '/', '', str_replace('\\', '/', $file->getPathname()));
 }
 
 if ($files)
@@ -105,10 +105,10 @@ if ($files)
 		make_directory($conn_id, $remoteDir . dirname($file));
 		ftp_chdir($conn_id, $remoteDir . dirname($file));
 		echo 'Transfer ' . mkShortPath($dir) . '/' . $file . ' -> ' . ftp_pwd($conn_id) . ' ' . basename($file) . NL;
-		
+
 		//Upload the file to current FTP directory
 		$success = ftp_put($conn_id, basename($file), $dir . "/"  . $file, FTP_BINARY);
-		
+
 		if ($success === false)
 		{
 			echo 'Error while ftp_put. File: ' . mkShortPath($dir) . "/"  . $file . NL .
@@ -117,7 +117,7 @@ if ($files)
 			return;
 		}
 
-		// echo 'Success!' . NL; 
+		// echo 'Success!' . NL;
 	}
 }
 else

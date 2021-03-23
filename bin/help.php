@@ -38,23 +38,23 @@ $scriptsHelp = array(
 	. '
 ```
 "versionTxt" (just a datetime stamp)
-"DIR" > "scss"
-"DIR" > "target"
-"DIR" > "project"
-"DIR" > "projectName"
-```', 
-	'The `DIR` block (inside **main** `package.json`):' =>
+"config" > "scss"
+"config" > "target"
+"config" > "project"
+"config" > "projectName"
+```',
+	'The `config` block (inside **main** `package.json`):' =>
 	'Normally you don\'t have to change it yourself if you use `node prepareProject.js [PROCECTFOLDER]` before first `npm` usage.' . NL
-	. '- `scss`: Variable `$npm_package_DIR_scss` (absolute path). The source *.scss-directory.' . NL
-	. '- `target`: Variable `$npm_package_DIR_target` (absolute path). Dir (normally your template folder) where the whole **content** of folder `$npm_package_DIR_dist` will be transfered to.' . NL
-	. '- `project`: Variable `$npm_package_DIR_project` (absolute path). Local dir of the project.' . NL
-	. '- `work`: Variable `$npm_package_DIR_work` (relative path). Temporary local work directory inside active/relevant project folder `$npm_package_DIR_project`.' . NL
-	. '- `css`: Variable `$npm_package_DIR_css` (relative path). In the beginning a work dir inside folder `$npm_package_DIR_work`. At the end a folder inside `$npm_package_DIR_dist` where all compiled, prefixed, minified CSS/MAP files are located.' . NL
-	. '- `raw`: Variable `$npm_package_DIR_raw` (relative path). In the beginning a work dir inside folder `$npm_package_DIR_work`. At the end a folder inside `$npm_package_DIR_dist` where all compiled, minified **BUT NOT PREFIXED** CSS files are located.' . NL
-	. '- `dist`:  Variable `$npm_package_DIR_dist` (relative path). Final source folder for transfer to `$npm_package_DIR_target` and for the FTP transfer. The whole **content** of this folder will be transfered. Not the folder itself.',);
+	. '- `scss`: Variable `$npm_package_config_scss` (absolute path). The source *.scss-directory.' . NL
+	. '- `target`: Variable `$npm_package_config_target` (absolute path). Dir (normally your template folder) where the whole **content** of folder `$npm_package_config_dist` will be transfered to.' . NL
+	. '- `project`: Variable `$npm_package_config_project` (absolute path). Local dir of the project.' . NL
+	. '- `work`: Variable `$npm_package_config_work` (relative path). Temporary local work directory inside active/relevant project folder `$npm_package_config_project`.' . NL
+	. '- `css`: Variable `$npm_package_config_css` (relative path). In the beginning a work dir inside folder `$npm_package_config_work`. At the end a folder inside `$npm_package_config_dist` where all compiled, prefixed, minified CSS/MAP files are located.' . NL
+	. '- `raw`: Variable `$npm_package_config_raw` (relative path). In the beginning a work dir inside folder `$npm_package_config_work`. At the end a folder inside `$npm_package_config_dist` where all compiled, minified **BUT NOT PREFIXED** CSS files are located.' . NL
+	. '- `dist`:  Variable `$npm_package_config_dist` (relative path). Final source folder for transfer to `$npm_package_config_target` and for the FTP transfer. The whole **content** of this folder will be transfered. Not the folder itself.',);
 
 $ftpHelp = array(
-	'FTP configuration (inside `$npm_package_DIR_project/ftp-credentials.json`)' =>
+	'FTP configuration (inside `$npm_package_config_project/ftp-credentials.json`)' =>
 	'**No guarantees concerning security!**' . NL
 	. '- See example file `myProject/ftp-credentials.json`.' . NL
 	. '- `place a comment here`: Place one if you want to. No usage.' . NL
@@ -76,12 +76,12 @@ foreach ($packageJson['scriptsHelp'] as $scriptName => $scriptHelp)
 	if (strpos($scriptName, 'g-') === 0)
 	{
 		$pre = 'npm run ';
-		
+
 		if ($realPaths)
 		{
 			$scriptHelp = str_replace($replaceMe, $replaceWith, $scriptHelp);
 		}
-		
+
 		if (
 			!empty($packageJson['scripts'][$scriptName])
 			&& strpos($packageJson['scripts'][$scriptName], 'npm-run-all') !== false

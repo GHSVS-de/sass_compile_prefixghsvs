@@ -14,21 +14,21 @@ if (!defined('NL'))
 	define('NL', PHP_EOL);
 }
 
-// Define PHP varaiables like '$npm_package_DIR_project'.
+// Define PHP varaiables like '$npm_package_config_project'.
 if (empty($packageJson))
 {
 	$packageJson = json_decode(
 		file_get_contents(JPATH_MAIN . 'package.json'),
 		$jsonAsArray
 	);
-	
+
 	$replaceMe = $replaceWith = array();
 
-	foreach ($packageJson['DIR'] as $key => $value)
+	foreach ($packageJson['config'] as $key => $value)
 	{
-		$Variable = 'npm_package_DIR_' . $key;
+		$Variable = 'npm_package_config_' . $key;
 		$$Variable = trim($value);
-		
+
 		$replaceMe[] = '$' . $Variable;
 		$replaceWith[] = $value;
 	}
@@ -39,10 +39,10 @@ if (!defined('CREATION_DATE'))
 	define('CREATION_DATE', $packageJson['versionTxt']);
 }
 
-if (empty($ftpJson) && file_exists($npm_package_DIR_project . '/ftp-credentials.json'))
+if (empty($ftpJson) && file_exists($npm_package_config_project . '/ftp-credentials.json'))
 {
 	$ftpJson = json_decode(
-		file_get_contents($npm_package_DIR_project . '/ftp-credentials.json'),
+		file_get_contents($npm_package_config_project . '/ftp-credentials.json'),
 		$jsonAsArray
 	);
 }
@@ -68,7 +68,7 @@ function doMinify($path)
 
 		$path_parts = pathinfo($filename);
 		$output = "$path/" . $path_parts['filename'] . '.min.css';
-		$command = "cleancss --level 1 --format breakWith=lf --source-map --source-map-inline-sources --output $output $filename";
+		$command = "cleancss -O1 --format breakWith=lf --with-rebase --source-map --source-map-inline-sources --output $output $filename";
 		exec($command);
 		echo 'Minified: ' . $path_parts['basename'] . NL;
 	}

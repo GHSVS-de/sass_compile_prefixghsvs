@@ -84,22 +84,22 @@ console.log(thisJson);
 
 const thatJson = JSON.parse(Fs.readFileSync(thatFile).toString());
 console.log(`OK, read main ${file}`);
-thatJson.DIR.scss = thisJson.scss;
-thatJson.DIR.target = thisJson.target;
+thatJson.config.scss = thisJson.scss;
+thatJson.config.target = thisJson.target;
 
 if (doCheck === true)
 {
-	thatJson.DIR.project = projectPath;
+	thatJson.config.project = projectPath;
 }
 else
 {
-	thatJson.DIR.project = `/thisRepository/${projectName}`;
+	thatJson.config.project = `/thisRepository/${projectName}`;
 }
-thatJson.DIR.projectName = projectName;
+thatJson.config.projectName = projectName;
 thatJson.versionTxt = dateFormat(new Date(), "isoDateTime");
 
 console.log(`New parameters to write:`);
-console.log(thatJson.DIR);
+console.log(thatJson.config);
 
 const readline = require('readline').createInterface({
   input: process.stdin,
@@ -108,7 +108,7 @@ const readline = require('readline').createInterface({
 
 readline.question('Continue and override ' + file + '? [y|n]: ', yesNo => {
 	console.log(`You entered: ${yesNo}`);
-	
+
 	if (yesNo !== 'y')
 	{
 		console.log(`Exiting programm!`);
@@ -123,4 +123,3 @@ readline.question('Continue and override ' + file + '? [y|n]: ', yesNo => {
 		process.exit(0);
 	}
 });
-
