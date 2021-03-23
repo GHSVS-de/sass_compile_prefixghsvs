@@ -11,8 +11,6 @@ test.sh
 test.php
 test2.php
 test.*
-help-real-paths.txt
-g-help-real-paths.txt
 log.txt
 run-p_*
 
