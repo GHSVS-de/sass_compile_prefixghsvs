@@ -45,6 +45,8 @@ or
 - Optional: Create and configure a file `yourOwnProject/ftp-credentials.json`. See example file `myProject/ftp-credentials.json`.
 - Run `node prepareProject.js yourOwnProject` and confirm to override the **main** `package.json`. Afterwards it's changed and configured for the project `yourOwnProject`. These keys are adapted:
 
+#### The `config` block (inside **main** `package.json`):
+
 ```
 "versionTxt" (just a datetime stamp)
 "config" > "scss"
@@ -53,7 +55,6 @@ or
 "config" > "projectName"
 ```
 
-#### The `config` block (inside **main** `package.json`):
 - Normally you don't have to change it yourself if you use `node prepareProject.js [PROCECTFOLDER]` before first `npm` usage.
 - `scss`: Variable `$npm_package_config_scss` (absolute path). The source *.scss-directory.
 - `target`: Variable `$npm_package_config_target` (absolute path). Dir (normally your template folder) where the whole **content** of folder `$npm_package_config_dist` will be transfered to.
