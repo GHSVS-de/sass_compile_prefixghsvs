@@ -1,10 +1,10 @@
 {
   "name": "sass_compile_prefixghsvs",
   "description": "Kompilieren und autoprefixen von scss in Template. Multiprojekt-Version.",
-  "version": "2021.03.23",
+  "version": "2021.07.04",
   "GitHubProjectUrl": "https://github.com/GHSVS-de/sass_compile_prefixghsvs",
   "Console start": "cd /mnt/z/git-kram/sass_compile_prefixghsvs",
-  "versionTxt": "2021-03-23T15:27:07+0100",
+  "versionTxt": "2021-07-04T01:21:04+0200",
   "config": {
     "scss": "/path/to/my/scss",
     "target": "/path/to/my/template",
@@ -44,7 +44,7 @@
     "g-mk-raw": "shx mkdir -p $npm_package_config_project/$npm_package_config_work/$npm_package_config_raw",
     "g-mk-dist": "shx mkdir -p $npm_package_config_project/$npm_package_config_work/$npm_package_config_dist",
     "replaced_g-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 $npm_package_config_scss/ -o $npm_package_config_project/$npm_package_config_work/$npm_package_config_css",
-    "g-compile": "sass --style expanded --source-map --embed-sources --no-error-css $npm_package_config_scss/:$npm_package_config_project/$npm_package_config_work/$npm_package_config_css",
+    "g-compile": "sass  --style expanded --source-map --embed-sources --no-error-css $npm_package_config_scss/:$npm_package_config_project/$npm_package_config_work/$npm_package_config_css",
     "g-copyRaw": "shx cp -rf  $npm_package_config_project/$npm_package_config_work/$npm_package_config_css/* $npm_package_config_project/$npm_package_config_work/$npm_package_config_raw",
     "replaced-by-gprefix_g-prefixsssss": "postcss --config build/postcss.config.js --replace \"$npm_package_config_project/$npm_package_config_work/$npm_package_config_css/*.css\" \"!$npm_package_config_project/$npm_package_config_work/$npm_package_config_css/*.min.css\"",
     "g-prefix": "bin/prefix.php $npm_package_config_css",
@@ -94,23 +94,23 @@
   },
   "license": "MIT",
   "dependencies": {
-    "npm": "^7.6.3"
+    "npm": "^7.19.1"
   },
   "peerDependencies": {
-    "postcss": "^8.2.8"
+    "postcss": "^8.3.5"
   },
   "devDependencies": {
-    "autoprefixer": "^10.2.5",
-    "clean-css-cli": "^5.2.2",
+    "autoprefixer": "^10.2.6",
+    "clean-css-cli": "^5.3.0",
     "dateformat": "^4.5.1",
     "fs": "0.0.1-security",
-    "fs-extra": "^9.1.0",
-    "nodemon": "^2.0.7",
-    "npm-check-updates": "^11.3.0",
+    "fs-extra": "^10.0.0",
+    "nodemon": "^2.0.9",
+    "npm-check-updates": "^11.8.1",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.2.8",
+    "postcss": "^8.3.5",
     "postcss-cli": "^8.3.1",
-    "sass": "^1.32.8",
+    "sass": "^1.35.1",
     "shelljs": "^0.8.4",
     "shx": "^0.3.3"
   },
